@@ -1,8 +1,8 @@
 import { DateTime } from 'luxon'
-import { BaseModel, column, hasMany } from '@adonisjs/lucid/orm'
-import User from './user.js'
-import type { HasMany } from '@adonisjs/lucid/types/relations'
 import type { UUID } from 'node:crypto'
+import { BaseModel, column, hasMany } from '@adonisjs/lucid/orm'
+import type { HasMany } from '@adonisjs/lucid/types/relations'
+import User from '#models/user'
 
 export default class Tenant extends BaseModel {
   @column({ isPrimary: true })

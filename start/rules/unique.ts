@@ -1,8 +1,8 @@
-import type Tenant from '#models/tenant'
 import { HttpContext } from '@adonisjs/core/http'
 import db from '@adonisjs/lucid/services/db'
 import vine, { VineNumber, VineString } from '@vinejs/vine'
 import type { FieldContext } from '@vinejs/vine/types'
+import type Tenant from '#models/tenant'
 
 interface Options {
   table: string

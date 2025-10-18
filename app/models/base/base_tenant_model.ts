@@ -1,7 +1,7 @@
 import { HttpContext } from '@adonisjs/core/http'
 import { BaseModel, beforeCreate, belongsTo, column, scope } from '@adonisjs/lucid/orm'
 import type { BelongsTo } from '@adonisjs/lucid/types/relations'
-import Tenant from '../tenant.js'
+import Tenant from '#models/tenant'
 
 /**
  * Base model for all tenant-scoped models

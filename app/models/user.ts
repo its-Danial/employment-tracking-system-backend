@@ -1,11 +1,11 @@
+import { DateTime } from 'luxon'
+import type { UUID } from 'node:crypto'
 import { DbAccessTokensProvider } from '@adonisjs/auth/access_tokens'
 import { withAuthFinder } from '@adonisjs/auth/mixins/lucid'
 import { compose } from '@adonisjs/core/helpers'
 import hash from '@adonisjs/core/services/hash'
 import { column } from '@adonisjs/lucid/orm'
-import { DateTime } from 'luxon'
-import type { UUID } from 'node:crypto'
-import BaseTenantModel from './base/base_tenant_model.js'
+import BaseTenantModel from '#models/base/base_tenant_model'
 
 const AuthFinder = withAuthFinder(() => hash.use('scrypt'), {
   uids: ['email'],

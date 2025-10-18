@@ -1,5 +1,4 @@
 import factory from '@adonisjs/lucid/factories'
-
 import Tenant from '#models/tenant'
 
 let tenantCounter = 0

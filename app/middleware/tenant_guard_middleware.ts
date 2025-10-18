@@ -1,7 +1,7 @@
-import Tenant from '#models/tenant'
 import { Exception } from '@adonisjs/core/exceptions'
 import type { HttpContext } from '@adonisjs/core/http'
 import type { NextFn } from '@adonisjs/core/types/http'
+import Tenant from '#models/tenant'
 
 declare module '@adonisjs/core/http' {
   interface HttpContext {

@@ -1,8 +1,8 @@
-import { UserService } from '#services/user_service'
-import { deleteUserValidator, getUserValidator, updateUserValidator } from '#validators/user'
+import type { UUID } from 'node:crypto'
 import { inject } from '@adonisjs/core'
 import type { HttpContext } from '@adonisjs/core/http'
-import type { UUID } from 'node:crypto'
+import { UserService } from '#services/user_service'
+import { deleteUserValidator, getUserValidator, updateUserValidator } from '#validators/user'
 
 @inject()
 export default class UsersController {

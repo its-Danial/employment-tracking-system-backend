@@ -1,6 +1,6 @@
+import factory from '@adonisjs/lucid/factories'
 import Tenant from '#models/tenant'
 import User from '#models/user'
-import factory from '@adonisjs/lucid/factories'
 
 export const UserFactory = factory
   .define(User, async ({ faker }) => {

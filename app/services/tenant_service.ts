@@ -1,5 +1,5 @@
-import Tenant from '#models/tenant'
 import { HttpContext } from '@adonisjs/core/http'
+import Tenant from '#models/tenant'
 
 export class TenantService {
   async getAllTenants() {

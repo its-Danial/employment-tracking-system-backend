@@ -1,6 +1,6 @@
-import { TenantService } from '#services/tenant_service'
 import { inject } from '@adonisjs/core'
 import { HttpContext } from '@adonisjs/core/http'
+import { TenantService } from '#services/tenant_service'
 
 @inject()
 export default class TenantsController {

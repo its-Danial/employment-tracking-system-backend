@@ -1,18 +1,20 @@
-import { DateTime } from 'luxon'
-import hash from '@adonisjs/core/services/hash'
-import { compose } from '@adonisjs/core/helpers'
-import { BaseModel, column } from '@adonisjs/lucid/orm'
-import { withAuthFinder } from '@adonisjs/auth/mixins/lucid'
 import { DbAccessTokensProvider } from '@adonisjs/auth/access_tokens'
+import { withAuthFinder } from '@adonisjs/auth/mixins/lucid'
+import { compose } from '@adonisjs/core/helpers'
+import hash from '@adonisjs/core/services/hash'
+import { column } from '@adonisjs/lucid/orm'
+import { DateTime } from 'luxon'
+import type { UUID } from 'node:crypto'
+import BaseTenantModel from './base/base_tenant_model.js'
 
 const AuthFinder = withAuthFinder(() => hash.use('scrypt'), {
   uids: ['email'],
   passwordColumnName: 'password',
 })
 
-export default class User extends compose(BaseModel, AuthFinder) {
+export default class User extends compose(BaseTenantModel, AuthFinder) {
   @column({ isPrimary: true })
-  declare id: number
+  declare id: UUID
 
   @column()
   declare fullName: string | null
@@ -29,5 +31,8 @@ export default class User extends compose(BaseModel, AuthFinder) {
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   declare updatedAt: DateTime | null
 
-  static accessTokens = DbAccessTokensProvider.forModel(User)
+  static accessTokens = DbAccessTokensProvider.forModel(User, {
+    expiresIn: '30 days',
+    prefix: 'ets_',
+  })
 }

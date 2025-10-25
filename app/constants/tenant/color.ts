@@ -1,0 +1,1 @@
+export const TENANT_DEFAULT_COLOR = '#020617'

@@ -2,8 +2,11 @@ import { DateTime } from 'luxon'
 import type { UUID } from 'node:crypto'
 import { BaseModel, column, hasMany } from '@adonisjs/lucid/orm'
 import type { HasMany } from '@adonisjs/lucid/types/relations'
+import Agent from '#models/agent'
+import Candidate from '#models/candidate'
+import Company from '#models/company'
+import Trade from '#models/trade'
 import User from '#models/user'
-import { type TenantColors } from '#types/colors'
 
 export default class Tenant extends BaseModel {
   @column({ isPrimary: true })
@@ -40,7 +43,7 @@ export default class Tenant extends BaseModel {
   // declare planEndDate: DateTime | null
 
   @column()
-  declare colors: TenantColors
+  declare color: string
 
   @column()
   declare logoUrl: string | null
@@ -59,4 +62,16 @@ export default class Tenant extends BaseModel {
 
   @hasMany(() => User)
   declare users: HasMany<typeof User>
+
+  @hasMany(() => Company)
+  declare companies: HasMany<typeof Company>
+
+  @hasMany(() => Agent)
+  declare agents: HasMany<typeof Agent>
+
+  @hasMany(() => Trade)
+  declare trades: HasMany<typeof Trade>
+
+  @hasMany(() => Candidate)
+  declare candidates: HasMany<typeof Candidate>
 }

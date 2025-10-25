@@ -1,5 +1,5 @@
 import factory from '@adonisjs/lucid/factories'
-import { TENANT_DEFAULT_COLORS } from '#constants/colors'
+import { TENANT_DEFAULT_COLOR } from '#constants/tenant/color'
 import Tenant from '#models/tenant'
 
 let tenantCounter = 0
@@ -16,7 +16,7 @@ export const TenantFactory = factory
       contactPhone: faker.phone.number(),
       address: faker.location.streetAddress(),
       isActive: true,
-      colors: TENANT_DEFAULT_COLORS,
+      color: TENANT_DEFAULT_COLOR,
       logoUrl: faker.image.url(),
       tagline: faker.company.buzzPhrase(),
       description: faker.lorem.paragraph(),

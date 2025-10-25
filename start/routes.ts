@@ -36,7 +36,7 @@ router
 // Tenants
 router
   .group(() => {
-    router.get('/', [TenantsController, 'show']) // Not authenticated so front-end can get tenant info
-    router.get('/list', [TenantsController, 'index']).use(middleware.auth())
+    router.get('/info', [TenantsController, 'info']) // Not authenticated so front-end can get tenant info
+    router.get('/list', [TenantsController, 'list']).use(middleware.auth())
   })
   .prefix('tenant')

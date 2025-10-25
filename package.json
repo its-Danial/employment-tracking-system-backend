@@ -1,5 +1,8 @@
 {
-  "name": "backend",
+  "name": "ets-backend",
+  "author": {
+    "name": "Malik Danial Azhar"
+  },
   "version": "0.0.0",
   "private": true,
   "type": "module",

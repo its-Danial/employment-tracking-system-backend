@@ -1,4 +1,5 @@
 import factory from '@adonisjs/lucid/factories'
+import { USER_ROLES } from '#constants/user/role'
 import Tenant from '#models/tenant'
 import User from '#models/user'
 
@@ -11,6 +12,8 @@ export const UserFactory = factory
       fullName: faker.person.fullName(),
       email: faker.internet.email().toLowerCase(),
       password: 'password',
+      role: USER_ROLES.user,
+      isActive: faker.datatype.boolean(),
     }
   })
   .build()

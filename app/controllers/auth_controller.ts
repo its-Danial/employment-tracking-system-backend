@@ -2,8 +2,8 @@ import { inject } from '@adonisjs/core'
 import type { HttpContext } from '@adonisjs/core/http'
 import User from '#models/user'
 import { UserService } from '#services/user_service'
-import { loginValidator } from '#validators/auth'
-import { createUserValidator } from '#validators/user'
+import { loginValidator } from '#validators/auth_validator'
+import { createUserValidator } from '#validators/user_validator'
 
 @inject()
 export default class AuthController {

@@ -4,11 +4,10 @@ import User from '#models/user'
 
 export const UserFactory = factory
   .define(User, async ({ faker }) => {
-    const tenant = await Tenant.all()
+    const tenant = await Tenant.findByOrFail('subdomain', 'localhost')
 
-    const randomTenantIndex = Math.floor(Math.random() * tenant.length)
     return {
-      tenantId: tenant[randomTenantIndex].id,
+      tenantId: tenant.id,
       fullName: faker.person.fullName(),
       email: faker.internet.email().toLowerCase(),
       password: 'password',

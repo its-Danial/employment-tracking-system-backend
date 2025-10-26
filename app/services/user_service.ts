@@ -1,6 +1,6 @@
 import { type Infer } from '@vinejs/vine/types'
 import User from '#models/user'
-import { createUserValidator, updateUserValidator } from '#validators/user'
+import { createUserValidator, updateUserValidator } from '#validators/user_validator'
 
 export class UserService {
   /**

@@ -2,7 +2,11 @@ import type { UUID } from 'node:crypto'
 import { inject } from '@adonisjs/core'
 import type { HttpContext } from '@adonisjs/core/http'
 import { UserService } from '#services/user_service'
-import { deleteUserValidator, getUserValidator, updateUserValidator } from '#validators/user'
+import {
+  deleteUserValidator,
+  getUserValidator,
+  updateUserValidator,
+} from '#validators/user_validator'
 
 @inject()
 export default class UsersController {
@@ -20,7 +24,7 @@ export default class UsersController {
    */
   async show({ request, response }: HttpContext) {
     const payload = await request.validateUsing(getUserValidator)
-    const user = await this.userService.getUserWithTenant(payload.params.id as UUID)
+    const user = await this.userService.getCurrentTenantUserById(payload.params.id as UUID)
     return response.ok({ message: 'User retrieved successfully', data: user })
   }
 

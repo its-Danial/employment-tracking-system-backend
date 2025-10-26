@@ -12,6 +12,7 @@ import { middleware } from '#start/kernel'
 const AuthController = () => import('#controllers/auth_controller')
 const TenantsController = () => import('#controllers/tenants_controller')
 const UsersController = () => import('#controllers/users_controller')
+const TradesController = () => import('#controllers/trades_controller')
 
 // Auth
 router
@@ -31,6 +32,17 @@ router
     router.delete('/:id', [UsersController, 'destroy'])
   })
   .prefix('users')
+  .use(middleware.auth())
+
+// Trades
+router
+  .group(() => {
+    router.get('/', [TradesController, 'index'])
+    router.get('/:id', [TradesController, 'show'])
+    router.put('/:id', [TradesController, 'update'])
+    router.delete('/:id', [TradesController, 'destroy'])
+  })
+  .prefix('trades')
   .use(middleware.auth())
 
 // Tenants

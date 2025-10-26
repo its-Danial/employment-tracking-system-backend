@@ -1,5 +1,5 @@
 import vine from '@vinejs/vine'
-import { passwordRule } from '#validators/common'
+import { passwordRule } from '#validators/common_validator'
 
 export const loginValidator = vine.compile(
   vine.object({

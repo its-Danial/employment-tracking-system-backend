@@ -1,4 +1,5 @@
 import vine from '@vinejs/vine'
+import { USER_ROLES } from '#constants/user/role'
 import { passwordRule } from '#validators/common_validator'
 
 const idDoesExistRule = vine
@@ -11,6 +12,8 @@ export const createUserValidator = vine.compile(
     fullName: vine.string().minLength(2).maxLength(100),
     email: vine.string().email().isUnique({ table: 'users', column: 'email' }),
     password: passwordRule,
+    role: vine.enum(Object.values(USER_ROLES)).optional(),
+    isActive: vine.boolean().optional(),
   })
 )
 
@@ -28,6 +31,8 @@ export const updateUserValidator = vine.compile(
       })
       .optional(),
     password: passwordRule.optional(),
+    role: vine.enum(Object.values(USER_ROLES)).optional(),
+    isActive: vine.boolean().optional(),
   })
 )
 

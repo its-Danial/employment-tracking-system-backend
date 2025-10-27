@@ -1,6 +1,10 @@
 import { Infer } from '@vinejs/vine/types'
 import Trade from '#models/trade'
-import { createTradeValidator, updateTradeValidator } from '#validators/trade_validator'
+import {
+  createTradeValidator,
+  listTradesValidator,
+  updateTradeValidator,
+} from '#validators/trade_validator'
 
 export class TradeService {
   /**
@@ -17,9 +21,19 @@ export class TradeService {
   }
   /**
    * Get all trades for the current tenant
+   * Returns all data if no pagination params, otherwise returns paginated result
    */
-  async getCurrentTenantTrades() {
-    return Trade.query().apply((scopes) => scopes.forTenant())
+  async getCurrentTenantTrades(payload?: Infer<typeof listTradesValidator>) {
+    const { page, limit, sortBy = 'createdAt', sortOrder = 'asc' } = payload || {}
+
+    const query = Trade.query()
+      .apply((scopes) => scopes.forTenant())
+      .orderBy(sortBy, sortOrder)
+
+    if (!page || !limit) return await query.exec()
+
+    const result = await query.paginate(page, limit)
+    return result.serialize()
   }
   /**
    * Get trades for a specific tenant (admin functionality)

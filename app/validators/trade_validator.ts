@@ -1,4 +1,5 @@
 import vine from '@vinejs/vine'
+import { paginationRule } from '#validators/common_validator'
 
 const idDoesExistRule = vine
   .string()
@@ -28,6 +29,8 @@ export const updateTradeValidator = vine.compile(
     description: vine.string().maxLength(255).optional(),
   })
 )
+
+export const listTradesValidator = vine.compile(paginationRule)
 
 export const getTradeValidator = vine.compile(
   vine.object({ params: vine.object({ id: idDoesExistRule }) })

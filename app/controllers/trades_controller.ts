@@ -5,6 +5,7 @@ import { TradeService } from '#services/trade_service'
 import {
   deleteTradeValidator,
   getTradeValidator,
+  listTradesValidator,
   updateTradeValidator,
 } from '#validators/trade_validator'
 
@@ -14,9 +15,16 @@ export default class TradesController {
   /**
    * List of Trades
    */
-  async index({ response }: HttpContext) {
-    const trades = await this.tradeService.getCurrentTenantTrades()
-    return response.ok({ message: 'Trades retrieved successfully', data: trades })
+  async index({ response, request }: HttpContext) {
+    const payload = await request.validateUsing(listTradesValidator)
+
+    const result = await this.tradeService.getCurrentTenantTrades(payload)
+
+    const message = 'Trades retrieved successfully'
+    if (Array.isArray(result)) return response.ok({ message, data: result })
+    else {
+      return response.ok({ message, data: result.data, meta: result.meta })
+    }
   }
   /**
    * Show individual record
